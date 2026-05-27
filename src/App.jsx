@@ -18,12 +18,12 @@ const getInitialState = () => {
   return {
     members: DEFAULT_MEMBERS,
     bills: {
-      room: 0,
+      room: 709800,
       electricity: 0,
       water: 0,
-      ac: 0,
-      internet: 0,
-      tax: 0
+      ac: 185000,
+      internet: 200000,
+      tax: 70980
     },
     waterInputMode: 'm3',
     waterM3: 0,

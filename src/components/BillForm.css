@@ -5,6 +5,62 @@
   flex-direction: column;
 }
 
+.bill-group-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.bill-group-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.bill-group-title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+  margin-bottom: 1rem;
+}
+.bill-group-header .bill-group-title {
+  margin-bottom: 0;
+}
+
+.btn-edit-fixed {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-card);
+  color: var(--accent-cyan);
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.btn-edit-fixed:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.fixed-value-display {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding-left: 1rem;
+  font-size: 1rem;
+  font-family: var(--font-mono);
+  color: var(--text-primary);
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(255,255,255,0.05);
+}
+
 .bill-input-card {
   background: rgba(0, 0, 0, 0.2);
   border: 1px solid var(--border-card);
