@@ -15,12 +15,12 @@ export default function WhatsAppShare({ result, periodName, onUpdatePeriod, paym
 
   // Individual phone numbers for direct wa.me/62... links
   const [phoneNumbers, setPhoneNumbers] = useState(() => {
-    const saved = localStorage.getItem('splitrusun_phones');
+    const saved = localStorage.getItem('222splits_phones');
     return saved ? JSON.parse(saved) : {};
   });
 
   useEffect(() => {
-    localStorage.setItem('splitrusun_phones', JSON.stringify(phoneNumbers));
+    localStorage.setItem('222splits_phones', JSON.stringify(phoneNumbers));
   }, [phoneNumbers]);
 
   const handlePhoneChange = (memberId, val) => {

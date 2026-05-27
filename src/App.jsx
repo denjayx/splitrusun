@@ -9,7 +9,7 @@ import WhatsAppShare from './components/WhatsAppShare';
 import './App.css';
 
 // Storage Key
-const LOCAL_STORAGE_KEY = 'splitrusun_app_state';
+const LOCAL_STORAGE_KEY = '222splits_app_state';
 
 // Default initial state
 const getInitialState = () => {
@@ -292,7 +292,7 @@ export default function App() {
           <div className="logo-section">
             <span className="logo-icon">🏠</span>
             <div className="logo-text">
-              <h1>SplitRusun</h1>
+              <h1>222Splits</h1>
               <p>Kalkulator Split Tagihan Rusun Premium</p>
             </div>
           </div>

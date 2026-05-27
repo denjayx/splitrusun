@@ -1,4 +1,4 @@
-// Default values for SplitRusun app
+// Default values for 222Splits app
 
 export const DEFAULT_MEMBERS = [
   { id: 'deni', name: 'Deni', isMain: true },

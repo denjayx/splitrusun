@@ -47,27 +47,27 @@ export default function BillForm({
 
       {/* 1. Room Rent Input */}
       <div className="bill-input-card">
-        <div className="bill-main-row">
-          <div className="input-group flex-grow">
-            <label className="input-label">Sewa Kamar (Rent)</label>
-            <div className="currency-input-wrapper">
-              <span className="currency-prefix">Rp</span>
-              <input
-                type="number"
-                value={bills.room || ''}
-                onChange={(e) => handleBillChange('room', e.target.value)}
-                placeholder="0"
-              />
-            </div>
+        <div className="input-group">
+          <label className="input-label">
+            <span>Sewa Kamar (Rent)</span>
+            <button 
+              type="button" 
+              className={`btn-toggle-config-inline ${splits.room?.length !== 2 ? 'customized' : ''}`}
+              onClick={() => toggleExpand('room')}
+              title="Atur pembagian kamar"
+            >
+              ⚙️ {splits.room?.length || 0} Orang
+            </button>
+          </label>
+          <div className="currency-input-wrapper">
+            <span className="currency-prefix">Rp</span>
+            <input
+              type="number"
+              value={bills.room || ''}
+              onChange={(e) => handleBillChange('room', e.target.value)}
+              placeholder="0"
+            />
           </div>
-          <button 
-            type="button" 
-            className={`btn-toggle-config ${splits.room?.length !== 2 ? 'customized' : ''}`}
-            onClick={() => toggleExpand('room')}
-            title="Atur pembagian kamar"
-          >
-            ⚙️ {splits.room?.length || 0} Orang
-          </button>
         </div>
         
         {expandedSection === 'room' && (
@@ -91,18 +91,16 @@ export default function BillForm({
 
       {/* 2. Electricity Total Input */}
       <div className="bill-input-card">
-        <div className="bill-main-row">
-          <div className="input-group flex-grow">
-            <label className="input-label">Total Tagihan Listrik (PLN)</label>
-            <div className="currency-input-wrapper">
-              <span className="currency-prefix">Rp</span>
-              <input
-                type="number"
-                value={bills.electricity || ''}
-                onChange={(e) => handleBillChange('electricity', e.target.value)}
-                placeholder="0"
-              />
-            </div>
+        <div className="input-group">
+          <label className="input-label">Total Tagihan Listrik (PLN)</label>
+          <div className="currency-input-wrapper">
+            <span className="currency-prefix">Rp</span>
+            <input
+              type="number"
+              value={bills.electricity || ''}
+              onChange={(e) => handleBillChange('electricity', e.target.value)}
+              placeholder="0"
+            />
           </div>
         </div>
         <p className="helper-info-text">
@@ -112,9 +110,21 @@ export default function BillForm({
 
       {/* 3. Water Input */}
       <div className="bill-input-card">
-        <div className="bill-main-row flex-col">
+        <div className="input-group">
+          <label className="input-label">
+            <span>Air (PDAM/Meteran)</span>
+            <button 
+              type="button" 
+              className={`btn-toggle-config-inline ${(splits.waterMain?.length !== 2 || splits.waterOther?.length !== 2) ? 'customized' : ''}`}
+              onClick={() => toggleExpand('water')}
+              title="Atur pembagian air"
+            >
+              ⚙️ Split 80/20
+            </button>
+          </label>
+          
           <div className="water-mode-toggle">
-            <span className="toggle-label-text">Cara Input Air:</span>
+            <span className="toggle-label-text">Cara Input:</span>
             <div className="radio-group">
               <button 
                 type="button"
@@ -128,16 +138,16 @@ export default function BillForm({
                 className={`radio-btn ${waterInputMode === 'idr' ? 'active' : ''}`}
                 onClick={() => onUpdateWaterMode('idr')}
               >
-                Nominal Langsung
+                Nominal
               </button>
             </div>
           </div>
 
-          <div style={{ width: '100%', display: 'flex', gap: '0.75rem', alignItems: 'flex-end' }}>
+          <div className="water-fields-row">
             {waterInputMode === 'm3' ? (
-              <>
-                <div className="input-group" style={{ flex: '1 1 50%', marginBottom: 0 }}>
-                  <label className="input-label">Pemakaian Air (m³)</label>
+              <div className="input-grid-2" style={{ width: '100%', gap: '0.75rem' }}>
+                <div className="input-group-sub">
+                  <span className="sub-label">Volume (m³)</span>
                   <input
                     type="number"
                     step="0.1"
@@ -146,10 +156,8 @@ export default function BillForm({
                     placeholder="0"
                   />
                 </div>
-                <div className="input-group" style={{ flex: '1 1 50%', marginBottom: 0 }}>
-                  <label className="input-label">
-                    <span>Est. Tagihan Air</span>
-                  </label>
+                <div className="input-group-sub">
+                  <span className="sub-label">Est. Tagihan</span>
                   <div className="currency-input-wrapper readonly-wrapper">
                     <span className="currency-prefix">Rp</span>
                     <input
@@ -160,29 +168,18 @@ export default function BillForm({
                     />
                   </div>
                 </div>
-              </>
+              </div>
             ) : (
-              <div className="input-group flex-grow" style={{ marginBottom: 0 }}>
-                <label className="input-label">Total Tagihan Air (PDAM)</label>
-                <div className="currency-input-wrapper">
-                  <span className="currency-prefix">Rp</span>
-                  <input
-                    type="number"
-                    value={bills.water || ''}
-                    onChange={(e) => handleBillChange('water', e.target.value)}
-                    placeholder="0"
-                  />
-                </div>
+              <div className="currency-input-wrapper" style={{ width: '100%' }}>
+                <span className="currency-prefix">Rp</span>
+                <input
+                  type="number"
+                  value={bills.water || ''}
+                  onChange={(e) => handleBillChange('water', e.target.value)}
+                  placeholder="0"
+                />
               </div>
             )}
-            <button 
-              type="button" 
-              className={`btn-toggle-config ${(splits.waterMain?.length !== 2 || splits.waterOther?.length !== 2) ? 'customized' : ''}`}
-              onClick={() => toggleExpand('water')}
-              style={{ height: '42px', alignSelf: 'flex-end' }}
-            >
-              ⚙️ Split 80/20
-            </button>
           </div>
         </div>
 
@@ -195,7 +192,7 @@ export default function BillForm({
               className="btn-edit-rates"
               onClick={() => toggleExpand('water-rates')}
             >
-              Ubah Tarif Air
+              Edit Tarif
             </button>
           </div>
         )}
@@ -205,7 +202,7 @@ export default function BillForm({
             <span className="drawer-title">Konfigurasi Tarif Air:</span>
             <div className="input-grid-2">
               <div className="input-group">
-                <label className="input-label">Tarif per m³ (IDR)</label>
+                <label className="input-label">Tarif per m³</label>
                 <input
                   type="number"
                   value={rates.waterM3}
@@ -213,7 +210,7 @@ export default function BillForm({
                 />
               </div>
               <div className="input-group">
-                <label className="input-label">Abonemen / Perawatan (IDR)</label>
+                <label className="input-label">Abonemen</label>
                 <input
                   type="number"
                   value={rates.waterMaintenance}
@@ -265,26 +262,26 @@ export default function BillForm({
 
       {/* 4. AC Rent Input */}
       <div className="bill-input-card">
-        <div className="bill-main-row">
-          <div className="input-group flex-grow">
-            <label className="input-label">Sewa AC (Air Conditioner)</label>
-            <div className="currency-input-wrapper">
-              <span className="currency-prefix">Rp</span>
-              <input
-                type="number"
-                value={bills.ac || ''}
-                onChange={(e) => handleBillChange('ac', e.target.value)}
-                placeholder="0"
-              />
-            </div>
+        <div className="input-group">
+          <label className="input-label">
+            <span>Sewa AC (Air Conditioner)</span>
+            <button 
+              type="button" 
+              className={`btn-toggle-config-inline ${splits.ac?.length !== 2 ? 'customized' : ''}`}
+              onClick={() => toggleExpand('ac')}
+            >
+              ⚙️ {splits.ac?.length || 0} Orang
+            </button>
+          </label>
+          <div className="currency-input-wrapper">
+            <span className="currency-prefix">Rp</span>
+            <input
+              type="number"
+              value={bills.ac || ''}
+              onChange={(e) => handleBillChange('ac', e.target.value)}
+              placeholder="0"
+            />
           </div>
-          <button 
-            type="button" 
-            className={`btn-toggle-config ${splits.ac?.length !== 2 ? 'customized' : ''}`}
-            onClick={() => toggleExpand('ac')}
-          >
-            ⚙️ {splits.ac?.length || 0} Orang
-          </button>
         </div>
 
         {expandedSection === 'ac' && (
@@ -308,26 +305,26 @@ export default function BillForm({
 
       {/* 5. Internet Input */}
       <div className="bill-input-card">
-        <div className="bill-main-row">
-          <div className="input-group flex-grow">
-            <label className="input-label">Internet / Wifi</label>
-            <div className="currency-input-wrapper">
-              <span className="currency-prefix">Rp</span>
-              <input
-                type="number"
-                value={bills.internet || ''}
-                onChange={(e) => handleBillChange('internet', e.target.value)}
-                placeholder="0"
-              />
-            </div>
+        <div className="input-group">
+          <label className="input-label">
+            <span>Internet / Wifi</span>
+            <button 
+              type="button" 
+              className={`btn-toggle-config-inline ${splits.internet?.length !== 2 ? 'customized' : ''}`}
+              onClick={() => toggleExpand('internet')}
+            >
+              ⚙️ {splits.internet?.length || 0} Orang
+            </button>
+          </label>
+          <div className="currency-input-wrapper">
+            <span className="currency-prefix">Rp</span>
+            <input
+              type="number"
+              value={bills.internet || ''}
+              onChange={(e) => handleBillChange('internet', e.target.value)}
+              placeholder="0"
+            />
           </div>
-          <button 
-            type="button" 
-            className={`btn-toggle-config ${splits.internet?.length !== 2 ? 'customized' : ''}`}
-            onClick={() => toggleExpand('internet')}
-          >
-            ⚙️ {splits.internet?.length || 0} Orang
-          </button>
         </div>
 
         {expandedSection === 'internet' && (
@@ -351,26 +348,26 @@ export default function BillForm({
 
       {/* 6. Tax Input */}
       <div className="bill-input-card">
-        <div className="bill-main-row">
-          <div className="input-group flex-grow">
-            <label className="input-label">Pajak (Tax)</label>
-            <div className="currency-input-wrapper">
-              <span className="currency-prefix">Rp</span>
-              <input
-                type="number"
-                value={bills.tax || ''}
-                onChange={(e) => handleBillChange('tax', e.target.value)}
-                placeholder="0"
-              />
-            </div>
+        <div className="input-group">
+          <label className="input-label">
+            <span>Pajak (Tax)</span>
+            <button 
+              type="button" 
+              className={`btn-toggle-config-inline ${splits.tax?.length !== 2 ? 'customized' : ''}`}
+              onClick={() => toggleExpand('tax')}
+            >
+              ⚙️ {splits.tax?.length || 0} Orang
+            </button>
+          </label>
+          <div className="currency-input-wrapper">
+            <span className="currency-prefix">Rp</span>
+            <input
+              type="number"
+              value={bills.tax || ''}
+              onChange={(e) => handleBillChange('tax', e.target.value)}
+              placeholder="0"
+            />
           </div>
-          <button 
-            type="button" 
-            className={`btn-toggle-config ${splits.tax?.length !== 2 ? 'customized' : ''}`}
-            onClick={() => toggleExpand('tax')}
-          >
-            ⚙️ {splits.tax?.length || 0} Orang
-          </button>
         </div>
 
         {expandedSection === 'tax' && (
