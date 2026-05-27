@@ -1,0 +1,233 @@
+/* WhatsAppShare.css */
+
+.whatsapp-share-panel {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Tabs */
+.wa-tabs {
+  display: flex;
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: var(--radius-sm);
+  padding: 3px;
+  border: 1px solid var(--border-card);
+  margin-bottom: 1.25rem;
+}
+
+.wa-tab-btn {
+  flex: 1;
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.wa-tab-btn:hover {
+  color: #fff;
+}
+
+.wa-tab-btn.active {
+  background: rgba(37, 211, 102, 0.1);
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.share-config-section {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+/* Message Preview Box */
+.message-preview-container {
+  background: #0d121e;
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  max-height: 250px;
+  overflow-y: auto;
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.message-preview {
+  font-family: monospace, Courier, sans-serif;
+  font-size: 0.8rem;
+  color: #a7f3d0; /* Soft green-accented text for code preview */
+  white-space: pre-wrap;
+  word-break: break-all;
+  line-height: 1.4;
+}
+
+/* Share action buttons */
+.share-actions-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+@media (max-width: 480px) {
+  .share-actions-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.btn-copy-wa,
+.btn-share-wa {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 700;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  text-decoration: none;
+  transition: all var(--transition-fast);
+  border: none;
+}
+
+.btn-copy-wa {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-card);
+  color: var(--text-primary);
+}
+
+.btn-copy-wa:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.btn-share-wa {
+  background: var(--primary);
+  color: #000;
+}
+
+.btn-share-wa:hover {
+  background: var(--primary-hover);
+  box-shadow: var(--shadow-glow);
+  transform: translateY(-1px);
+}
+
+/* Individual Content List */
+.individual-members-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.ind-member-card {
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.ind-member-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ind-member-name {
+  font-weight: 700;
+  color: #fff;
+  font-size: 0.95rem;
+}
+
+.ind-member-owed {
+  font-weight: 800;
+  color: var(--primary);
+  font-size: 1.05rem;
+}
+
+.ind-member-actions {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+/* Phone input decoration */
+.phone-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.phone-prefix {
+  position: absolute;
+  left: 10px;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  pointer-events: none;
+}
+
+.phone-input {
+  padding: 8px 10px 8px 38px !important;
+  font-size: 0.8rem !important;
+}
+
+.actions-buttons-group {
+  display: flex;
+  gap: 4px;
+}
+
+.btn-ind-action {
+  height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 700;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  text-decoration: none;
+  transition: all var(--transition-fast);
+  border: none;
+  white-space: nowrap;
+}
+
+.btn-ind-copy {
+  width: 38px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-card);
+  color: var(--text-primary);
+}
+
+.btn-ind-copy:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.btn-ind-copy.copied {
+  background: rgba(37, 211, 102, 0.15);
+  border-color: rgba(37, 211, 102, 0.3);
+}
+
+.btn-ind-share {
+  background: var(--primary);
+  color: #000;
+  padding: 0 12px;
+}
+
+.btn-ind-share:hover {
+  background: var(--primary-hover);
+}
