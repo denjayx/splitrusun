@@ -11,7 +11,7 @@ export function formatIndividualSummary(person, fullResult, note = '') {
   const { member, shares, totalOwed } = person;
   const { electricityCalculation, waterCalculation } = fullResult;
   
-  let text = `👤 *TAGIHAN RUSUN — ${member.name.toUpperCase()}*\n\n`;
+  let text = `👤 *TAGIHAN SPLIT 222 — ${member.name.toUpperCase()}*\n\n`;
   text += `Berikut rincian tagihan kamu bulan ini:\n\n`;
 
   // Room
